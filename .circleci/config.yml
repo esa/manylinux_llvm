@@ -6,7 +6,7 @@ orbs:
 jobs:
   manylinux2014_aarch64:
     machine:
-      image: ubuntu-2004:202101-01
+      image: ubuntu-2204:current
     resource_class: arm.large
     steps:
     - checkout
@@ -15,11 +15,28 @@ jobs:
         docker-password: DOCKERHUB_TOKEN
     - docker/build:
         dockerfile: Dockerfile
-        extra_build_args: --build-arg ARCH=aarch64
+        extra_build_args: --build-arg ARCH=aarch64 --build-arg MANYLINUXIMG=manylinux2014
         image: $DOCKERHUB_USERNAME/llvm_manylinux2014_aarch64
         tag: latest
     - docker/push:
         image: $DOCKERHUB_USERNAME/llvm_manylinux2014_aarch64
+        tag: latest
+  manylinux_2_28_aarch64:
+    machine:
+      image: ubuntu-2204:current
+    resource_class: arm.large
+    steps:
+    - checkout
+    - docker/check:
+        docker-username: DOCKERHUB_USERNAME
+        docker-password: DOCKERHUB_TOKEN
+    - docker/build:
+        dockerfile: Dockerfile
+        extra_build_args: --build-arg ARCH=aarch64 --build-arg MANYLINUXIMG=manylinux_2_28
+        image: $DOCKERHUB_USERNAME/llvm_manylinux_2_28_aarch64
+        tag: latest
+    - docker/push:
+        image: $DOCKERHUB_USERNAME/llvm_manylinux_2_28_aarch64
         tag: latest
 
 workflows:
@@ -27,3 +44,4 @@ workflows:
   all_builds:
     jobs:
     - manylinux2014_aarch64
+    - manylinux_2_28_aarch64
