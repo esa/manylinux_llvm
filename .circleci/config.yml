@@ -14,7 +14,7 @@ jobs:
         docker-username: DOCKERHUB_USERNAME
         docker-password: DOCKERHUB_TOKEN
     - docker/build:
-        dockerfile: Dockerfile2014
+        dockerfile: Dockerfile
         extra_build_args: --build-arg ARCH=aarch64
         image: $DOCKERHUB_USERNAME/llvm_manylinux2014_aarch64
         tag: latest

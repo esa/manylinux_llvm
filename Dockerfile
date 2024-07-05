@@ -1,5 +1,5 @@
 ARG ARCH=x86_64
-FROM quay.io/pypa/manylinux2014_$ARCH
+FROM quay.io/pypa/$MANYLINUXIMG_$ARCH
 
 # We place ourself in some safe location to do all installations
 RUN cd \
