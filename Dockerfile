@@ -8,7 +8,7 @@ RUN cd \
 
 # Install llvm
 WORKDIR /root/install
-ARG LLVM_VERSION="16.0.4"
+ARG LLVM_VERSION="18.1.8"
 RUN curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${LLVM_VERSION}.tar.gz > llvm-project-${LLVM_VERSION}.tar.gz \
   && tar xvf  llvm-project-${LLVM_VERSION}.tar.gz > /dev/null 2>&1 \
   && mv llvm*${LLVM_VERSION} llvm_root \
