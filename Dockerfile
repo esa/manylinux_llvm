@@ -8,7 +8,7 @@ RUN cd \
 
 # Install llvm
 WORKDIR /root/install
-ARG LLVM_VERSION="19.1.4"
+ARG LLVM_VERSION="19.1.5"
 RUN curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${LLVM_VERSION}.tar.gz > llvm-project-${LLVM_VERSION}.tar.gz \
   && tar xvf  llvm-project-${LLVM_VERSION}.tar.gz > /dev/null 2>&1 \
   && mv llvm*${LLVM_VERSION} llvm_root \
@@ -27,4 +27,3 @@ RUN curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${LLV
   
 # Making sure the new libraries (in /usr/local/lib) can be found
 RUN ldconfig
-  
