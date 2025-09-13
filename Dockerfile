@@ -15,11 +15,9 @@ RUN curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${LLV
   && cd llvm_root \
   && cmake -S llvm -B build -DCMAKE_BUILD_TYPE=Release \
                             -DLLVM_ENABLE_RTTI=ON \
-                            -DLLVM_ENABLE_TERMINFO=OFF \
                             -DLLVM_INCLUDE_BENCHMARKS=OFF \
                             -DLLVM_INCLUDE_DOCS=OFF \
                             -DLLVM_INCLUDE_EXAMPLES=OFF \
-                            -DLLVM_INCLUDE_GO_TESTS=OFF \
                             -DLLVM_INCLUDE_TESTS=OFF \
                             -DLLVM_INCLUDE_UTILS=OFF \
                             -DLLVM_INSTALL_UTILS=OFF \
