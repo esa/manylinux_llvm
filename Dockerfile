@@ -2,9 +2,6 @@ ARG ARCH
 ARG MANYLINUXIMG
 FROM quay.io/pypa/${MANYLINUXIMG}_${ARCH} AS builder
 
-# Ensure /usr/local is clean before building LLVM.
-RUN rm -rf /usr/local/*
-
 # Install llvm
 WORKDIR /root/install
 ARG LLVM_VERSION="21.1.4"
@@ -24,9 +21,6 @@ RUN curl -L https://github.com/llvm/llvm-project/archive/refs/tags/llvmorg-${LLV
 
 # Final stage.
 FROM quay.io/pypa/${MANYLINUXIMG}_${ARCH}
-
-# 1. Ensure /usr/local is clean before copying the files over.
-RUN rm -rf /usr/local/*
 
 # 2. Copy the entire /usr/local contents from the builder.
 COPY --from=builder /usr/local/ /usr/local/
